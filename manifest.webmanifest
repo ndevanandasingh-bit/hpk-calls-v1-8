@@ -2,7 +2,7 @@
   "id": "./",
   "name": "HPK Calls - Reliable Internet Calling",
   "short_name": "HPK Calls",
-  "description": "HPK Calls V1.11.1 with incoming ringtone, vibration, Answer/Decline, no-answer timeout, caller-cancel detection, Quick Connect and WebRTC voice/video.",
+  "description": "HPK Calls V1.11.2 with louder incoming ringtone, stronger vibration, Answer/Decline, no-answer timeout, caller-cancel detection, Quick Connect and WebRTC voice/video.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
