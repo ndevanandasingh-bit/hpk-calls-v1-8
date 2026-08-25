@@ -1,12 +1,7 @@
 'use strict';
-const CACHE='hpk-calls-pwa-v1.10.7';
-const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./hpk-logo.png'];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('message',e=>{if(e.data?.type==='SKIP_WAITING')self.skipWaiting()});
-self.addEventListener('fetch',e=>{
-  if(e.request.method!=='GET')return;
-  const u=new URL(e.request.url);
-  if(u.pathname.startsWith('/api/'))return; // signaling is always network-only
-  e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(cache=>cache.put(e.request,c));return r}).catch(()=>caches.match(e.request).then(r=>r||caches.match('./index.html'))));
-});
+const CACHE='hpk-calls-pwa-v1.11.1';
+const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./hpk-logo.png'];
+self.addEventListener('install',event=>event.waitUntil((async()=>{const cache=await caches.open(CACHE);const results=await Promise.allSettled(CORE.map(u=>cache.add(new Request(new URL(u,self.location.href),{cache:'reload'}))));if(results.some((r,i)=>r.status==='rejected'&&['./','./index.html'].includes(CORE[i])))throw new Error('HPK Calls core shell could not be cached');await self.skipWaiting()})()));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith('hpk-calls-pwa-')&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})()));
+self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
+self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;const u=new URL(event.request.url);if(u.pathname.startsWith('/api/'))return;const isNav=event.request.mode==='navigate'||u.pathname.endsWith('/index.html')||u.pathname==='/';if(isNav){event.respondWith((async()=>{try{const fresh=await fetch(event.request,{cache:'no-store'});const cache=await caches.open(CACHE);cache.put('./index.html',fresh.clone()).catch(()=>{});return fresh}catch{return(await caches.match(event.request))||(await caches.match('./index.html'))||Response.error()}})());return}event.respondWith((async()=>{const cached=await caches.match(event.request);const network=fetch(event.request).then(async r=>{if(r&&r.ok){const cache=await caches.open(CACHE);cache.put(event.request,r.clone()).catch(()=>{})}return r}).catch(()=>null);return cached||(await network)||Response.error()})())});
