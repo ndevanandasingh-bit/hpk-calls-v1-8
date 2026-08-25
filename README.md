@@ -1,36 +1,40 @@
-# HPK Calls V1.11.1 — Incoming Ringing Build
+# HPK Calls V1.11.2 — Loud Ringtone Reliability Build
 
-## What is new
-- Receiver ringtone generated locally in the browser (no paid ringtone service and no external audio file).
-- Repeating vibration pattern where the phone/browser supports vibration.
-- Clear **Answer** and **Decline** controls on the incoming-call screen.
-- Caller sees **Ringing…** after the receiver opens the HPK call link/room.
-- 45-second no-answer timeout; caller receives **No answer** status.
-- Caller cancellation is detected while the receiver is ringing and closes the incoming-call screen.
-- Android/browser autoplay recovery: if the browser blocks automatic sound, **Enable ring sound** appears for one tap.
-- Service-worker/cache version advanced to V1.11.1 so old V1.11.0 code is removed on activation.
+HPK Calls V1.11.2 is a focused update to the working V1.11.1 call flow. It increases incoming-call audibility while preserving the existing Quick Connect, Answer/Decline and WebRTC connection logic.
 
-## Complete package
-Upload these files together to the same application root:
-1. `package.json`
-2. `server.js`
-3. `index.html`
-4. `sw.js`
-5. `manifest.webmanifest`
-6. `hpk-logo.png`
-7. `icon-192.png`
-8. `icon-512.png`
+## What changed in V1.11.2
 
-`README.md` and `TEST-REPORT.md` are documentation and may also be uploaded.
+- Louder Web Audio ringtone with controlled peak gain.
+- Two-tone ringtone tuned for better audibility on small mobile speakers.
+- Dynamics compression reduces harsh clipping while allowing a stronger ring.
+- Stronger vibration pattern on supported Android browsers/devices.
+- Incoming status displays **Ringing loudly…**.
+- Answer, Decline, 45-second no-answer timeout and caller-cancel handling retained.
+- Service-worker/cache version advanced to V1.11.2 so the new ringtone code replaces V1.11.1.
 
-## Run
-```bash
-npm start
-```
-The Node server serves both the PWA and `/api` Quick Connect signaling. Deploy behind HTTPS for microphone/camera/PWA operation.
+## Important Android/PWA note
+
+The PWA ringtone follows the phone's **media volume**. HPK Calls cannot force the handset above the user's Android volume setting. If the ring is still faint, increase the phone's media volume.
+
+A browser may also block automatic audio until the user has interacted with the site. V1.11.2 retains the **Enable ring sound** recovery button for that case.
+
+## Deployment
+
+Upload the complete package to the same GitHub repository/root used by the current Render service. The application files are:
+
+- `package.json`
+- `server.js`
+- `index.html`
+- `sw.js`
+- `manifest.webmanifest`
+- `hpk-logo.png`
+- `icon-192.png`
+- `icon-512.png`
+
+The PNG assets are unchanged from V1.11.1, so they do not need to be re-uploaded if they already exist and are identical.
+
+After Render deploys, open HPK Calls. If the update banner appears, tap **Update Now** and allow the PWA to reload.
 
 ## Cost
-V1.11.1 does not require a new paid service. The ringtone is generated on-device. Existing hosting/data usage still applies. TURN remains optional unless you configure a TURN service for higher network reliability.
 
-## PWA limitation
-The ringtone works while HPK Calls is open/active or when the receiver opens the shared call link. A web/PWA app cannot guarantee a custom ringtone when Android has completely stopped the app. Reliable ringing while fully closed/locked requires a later native Android + push-notification implementation.
+V1.11.2 adds no paid service requirement. The ringtone is generated on the receiving device. Existing internet/hosting usage still applies. TURN remains optional unless configured for higher network reliability.
