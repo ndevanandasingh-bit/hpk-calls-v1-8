@@ -1,8 +1,8 @@
 {
   "name": "hpk-calls",
-  "version": "1.11.2",
+  "version": "1.12.0",
   "private": true,
-  "description": "HPK Calls V1.11.2 Loud Ringtone Reliability Build",
+  "description": "HPK Calls V1.12.0 Advanced Reliability Edition",
   "scripts": {
     "start": "node server.js"
   },
