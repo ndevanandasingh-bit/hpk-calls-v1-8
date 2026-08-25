@@ -1,0 +1,12 @@
+{
+  "name": "hpk-calls",
+  "version": "1.11.1",
+  "private": true,
+  "description": "HPK Calls V1.11.1 Incoming Ringing Build",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
