@@ -1,21 +1,54 @@
 {
   "id": "./",
-  "name": "HPK Calls - Easy Internet Calling",
+  "name": "HPK Calls - Reliable Internet Calling",
   "short_name": "HPK Calls",
-  "description": "HPK Calls V1.10.2 Polished Compact Edition: simple WebRTC voice/video calling with automatic Room IDs and collapsible call options.",
+  "description": "HPK Calls V1.11.1 with incoming ringtone, vibration, Answer/Decline, no-answer timeout, caller-cancel detection, Quick Connect and WebRTC voice/video.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#040812",
   "theme_color": "#071a33",
-  "categories": ["social","utilities"],
+  "categories": [
+    "social",
+    "utilities"
+  ],
   "icons": [
-    {"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ],
   "shortcuts": [
-    {"name":"Voice Call","short_name":"Voice","url":"./#voice","icons":[{"src":"./icon-192.png","sizes":"192x192"}]},
-    {"name":"Video Call","short_name":"Video","url":"./#video","icons":[{"src":"./icon-192.png","sizes":"192x192"}]}
+    {
+      "name": "Voice Call",
+      "short_name": "Voice",
+      "url": "./#voice",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Video Call",
+      "short_name": "Video",
+      "url": "./#video",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ]
 }
