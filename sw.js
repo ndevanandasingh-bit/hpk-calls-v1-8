@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='hpk-calls-pwa-v1.11.2';
+const CACHE='hpk-calls-pwa-v1.12.0';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./hpk-logo.png'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{const cache=await caches.open(CACHE);const results=await Promise.allSettled(CORE.map(u=>cache.add(new Request(new URL(u,self.location.href),{cache:'reload'}))));if(results.some((r,i)=>r.status==='rejected'&&['./','./index.html'].includes(CORE[i])))throw new Error('HPK Calls core shell could not be cached');await self.skipWaiting()})()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith('hpk-calls-pwa-')&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})()));
