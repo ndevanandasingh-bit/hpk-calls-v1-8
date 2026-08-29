@@ -1,54 +1,21 @@
 {
   "id": "./",
-  "name": "HPK Calls - Reliable Internet Calling",
+  "name": "HPK Calls - Direct Internet Calling",
   "short_name": "HPK Calls",
-  "description": "HPK Calls V1.12.0 Advanced Reliability Edition with caller ringback, adjustable ringtone strength, live call health, one-tap redial, Quick Connect and WebRTC voice/video.",
+  "description": "HPK Calls V1.15.0 with private HPK User IDs, direct user-to-user calling, online presence, saved HPK contacts, Quick Connect fallback and WebRTC voice/video.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#040812",
   "theme_color": "#071a33",
-  "categories": [
-    "social",
-    "utilities"
-  ],
+  "categories": ["social","utilities"],
   "icons": [
-    {
-      "src": "./icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "./icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    {"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ],
   "shortcuts": [
-    {
-      "name": "Voice Call",
-      "short_name": "Voice",
-      "url": "./#voice",
-      "icons": [
-        {
-          "src": "./icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "Video Call",
-      "short_name": "Video",
-      "url": "./#video",
-      "icons": [
-        {
-          "src": "./icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
+    {"name":"Voice Call","short_name":"Voice","url":"./#voice","icons":[{"src":"./icon-192.png","sizes":"192x192"}]},
+    {"name":"Video Call","short_name":"Video","url":"./#video","icons":[{"src":"./icon-192.png","sizes":"192x192"}]}
   ]
 }
